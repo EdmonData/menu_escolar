@@ -1,0 +1,28 @@
+<div class="container col-sm-12 col-md-6 m-auto mt-5">
+<form action="/users" method="post" class="form px-5 py-3 m-auto card text-center wrapper">
+  <i class="fas fa-mortar-pestle fa-5x text-center my-2"></i>
+   <h4 class=>Registro</h4>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" placeholder="Ingrese su nombre" name="name" id="nombre" value="" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-envelope"></i></span>
+        <input class="form-control" placeholder="Ingrese su correo" name="email" id="email" value="" />
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-key"></i></span>
+        <input class="form-control" type="password" placeholder="Ingrese su clave" name="password" id="password" value="" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-key"></i></span>
+        <input class="form-control" type="password" placeholder="Confirme su clave" name="passwordConfirm" id="passwordConfirm"
+            value="" />
+    </div>
+
+    <button type="submit" class="btn btn-light w-50 m-auto" data-mdb-ripple-color="dark" onclick="registrar()">Registrarme</button>
+    <a href="/login" class="mt-2">Ingresar</a>
+</form>
+</div>

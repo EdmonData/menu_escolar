@@ -1,0 +1,49 @@
+<div class="row g-4 mt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body text-start">
+            <h5>M1: Menú Vegetariano</h5>
+            <h5>M2: Menú Celiaco</h5>
+            <h5>M2: Menú Estándar</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body text-start">
+            <h5>M1: Menú Calórico</h5>
+            <h5>M2: Menú Autóctono</h5>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered col-sm-12 col-md-6">
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">M1</th>
+            <th scope="col">M2</th>
+            <th scope="col">M3</th>
+            <th scope="col">M4</th>
+            <th scope="col">M5</th>
+            <th scope="col">ACCIÓN</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo">
+          {{#each orders}}
+          <tr class="bg-{{#if this.is_rectifield}}success{{else}}warning{{/if}}">
+            <th>{{ dateFormat this.date "DD-MM-YYYY" }}</th>
+            <td>{{this.vegetarian}}</td>
+            <td>{{this.celiac}}</td>
+            <td>{{this.standar}}</td>
+            <td>{{this.caloric}}</td>
+            <td>{{this.ethnic}}</td>
+            <td class="text-{{#if this.is_rectifield}}success font-weight-bold"><button type="submit"
+                class="btn btn-success btn-outline-dark">Ver Detalles</button></td>{{else}}danger
+            font-weight-bold"><button type="submit" class="btn btn-warning btn-outline-dark">Rectificar</button></td>
+            {{/if}}
+
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>

@@ -100,12 +100,26 @@ app.post('/registro', async (req, res) => {
             error: `Algo salio mal ${e}`,
             code:500
         });
-    }
+    } 
 });
 
-app.get('/pedido', (req, res) => {
-    res.render('Pedido');
+app.get('/pedido', async(req, res) => {
+    const { token } = req.query;
+    console.log(token);
+    if (token) {
+        jwt.verify(token, secretKey, (err, decoded) => {
+            if (err) {
+                res.render('Auth', { error: 'Token invalido' });
+            } else {
+                const { data } = decoded;
+                console.log(data);
+                res.render('Pedido',{ data: data });
+            }
+        });
+    }
 }); 
+
+
 
 
 

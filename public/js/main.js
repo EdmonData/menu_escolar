@@ -1,6 +1,7 @@
 $('form').submit(function(e){
     e.preventDefault();
 });
+const tokenGguardado = localStorage.getItem('token');
 
 const logout = () => {
     window.location.href = '/login';
@@ -28,13 +29,15 @@ const registrar = async () => {
 
 
 const verificar = async () => {
+  
     const emailLogin = $('#emailLogin').val()
     const passwordLogin = $('#passwordLogin').val()
     const payload = { emailLogin, passwordLogin }
     try {
         const { data: token } = await axios.post('/login', payload)
         alert('Usuario verificado y autenticado')
-        window.location.href = '/?token=' + token
+        localStorage.setItem('token', token);
+        window.location.href = '/?token=' + token;
         }
     catch ({ response }) {
         const { data } = response
@@ -42,6 +45,21 @@ const verificar = async () => {
         alert(error)
     }
 }
+
+const nuevoPedido = async (id) => {
+    alert(`Pedido creado ${tokenGguardado}`);
+    const data = { id };
+    try {
+         await axios.get('/pedido', data)
+        alert('Pedido creado')
+        window.location.href = '/pedido/?token=' + tokenGguardado;
+    }
+    catch ({ response }) {
+        const { data } = response
+        const { error } = data
+        alert(error)
+    }
+} ;
 
 
 const saludar = () => {

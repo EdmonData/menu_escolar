@@ -7,7 +7,7 @@ const pool = new Pool({
     port: 5432,
 });
 
-const nuevoUsuario = async (nombre, email, password) => {
+const newUser = async (nombre, email, password) => {
     const crearUsuario = {
     text: 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;',
     values: [nombre, email, password],
@@ -20,7 +20,7 @@ try{
 }
 }
 
-const getUsuario = async (email, password) => {
+const getUser = async (email, password) => {
     const usuario = {
         text: 'SELECT * FROM users WHERE email = $1 AND password = $2;',
         values: [email, password],
@@ -68,8 +68,8 @@ const getOrdersByUser = async (id) => {
 
 
 module.exports = {
-    getUsuario,
-    nuevoUsuario,
+    getUser,
+    newUser,
     getAllOlderes,
     getOrdersByUser,
     getAllUsers

@@ -37,31 +37,20 @@ const verificar = async () => {
         const { data: token } = await axios.post('/login', payload)
         alert('Usuario verificado y autenticado')
         localStorage.setItem('token', token);
-        window.location.href = '/?token=' + token;
+        console.log(token);
+        window.location.href = '/users/home/?token=' + token;
         }
-    catch ({ response }) {
+    catch ({ response }) { 
         const { data } = response
         const { error } = data
         alert(error)
+        window.location.href = 'users/registro';
     }
 }
 
-const nuevoPedido = async (id) => {
-    alert(`Pedido creado ${tokenGguardado}`);
-    const data = { id };
-    try {
-         await axios.get('/pedido', data)
-        alert('Pedido creado')
-        window.location.href = '/pedido/?token=' + tokenGguardado;
-    }
-    catch ({ response }) {
-        const { data } = response
-        const { error } = data
-        alert(error)
-    }
-} ;
-
-
+const nuevoPedido = async () => {
+            window.location.href = '/pedido/?token=' + tokenGguardado;
+}
 const saludar = () => {
     alert('hola');
 };

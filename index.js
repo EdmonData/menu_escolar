@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 
 //app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 //app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist/"));
+//app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist/"));
 
 app.engine(
     'handlebars',
@@ -35,11 +35,13 @@ app.engine(
 app.set('view engine', 'handlebars');
 
 const authRoutes = require('./routes/auth');
+const validaterute = require('./routes/validate_toke');
 const userRoutes = require('./routes/users');
 
 
 app.use('/', authRoutes);
-app.use('/users', userRoutes);
+app.use('/users',validaterute , userRoutes); 
+
 
 // 404 Page
 app.get("*", (req, res) => {

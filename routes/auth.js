@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 
-const { getUser, getAllOlderes, getOrdersByUser, getAllUsers } = require('../consultas');
+const { getUser, getAllOlderes, getOrdersByUser, getAllUsers, newUser } = require('../consultas');
 
 router.get('/', (req, res) => {
     res.render('login');
@@ -19,9 +19,25 @@ router.post('/login', async (req, res) => {
                 error: 'Usuario no encontrado',
                 code: 404
             });
+            res.render('/registro');
         }
     });
 
+    router.get('/registro', (req, res) => {
+        res.render('Registro');
+    });
 
+    router.post('/registro', async (req, res) => {
+        const { nombre, email, password } = req.body;
+        try {
+            const usuario = await newUser( nombre, email, password );
+            res.status(201).send(usuario);
+        } catch (e) {
+            res.status(500).send({
+                error: `Algo salio mal ${e}`,
+                code:500
+            });
+        } 
+    });
 
 module.exports = router;

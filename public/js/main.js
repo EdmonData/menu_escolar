@@ -4,7 +4,8 @@ $('form').submit(function(e){
 const tokenGguardado = localStorage.getItem('token');
 
 const logout = () => {
-    window.location.href = '/login';
+    localStorage.removeItem('token');
+    window.location.href = '/';
 }
 
 const registrar = async () => {
@@ -18,7 +19,7 @@ const registrar = async () => {
         await axios.post('/registro', data)
         alert('Usuario creado')
 
-        window.location.href = '/login'
+        window.location.href = '/'
     }
     catch ({ response }) {
         const { data } = response
@@ -44,13 +45,11 @@ const verificar = async () => {
         const { data } = response
         const { error } = data
         alert(error)
-        window.location.href = 'users/registro';
+        window.location.href = '/registro';
     }
 }
 
 const nuevoPedido = async () => {
-            window.location.href = '/pedido/?token=' + tokenGguardado;
+    window.location.href = '/users/newPedido/?token=' + tokenGguardado;
 }
-const saludar = () => {
-    alert('hola');
-};
+

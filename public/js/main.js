@@ -27,7 +27,7 @@ const registrar = async () => {
         alert(error)
     }
 };
-
+ 
 
 const verificar = async () => {
   
@@ -52,4 +52,24 @@ const verificar = async () => {
 const nuevoPedido = async () => {
     window.location.href = '/users/newPedido/?token=' + tokenGguardado;
 }
+
+const newOrder = async () => {
+    const vegetariano = $('#vegetariano').val()
+    const calorico = $('#calorico').val()
+    const celiaco = $('#celiaco').val()
+    const autoctono = $('#autoctono').val()
+    const estandar = $('#estandar').val()
+    const fecha = $('#fecha').val()
+    const data = { vegetariano, calorico, celiaco, autoctono, estandar, fecha }
+    try {
+        await axios.post('/users/newPedido?token=' + tokenGguardado, data)
+        alert('Pedido creado')
+        window.location.href = '/users/home/?token=' + tokenGguardado;
+    } catch ({ response }) {
+        const { data } = response
+        const { error } = data
+        alert(error)
+    }
+
+};
 

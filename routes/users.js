@@ -1,10 +1,6 @@
 const router = require('express').Router();
-const { ruleset } = require('@hapi/joi/lib/base');
-const jwt = require('jsonwebtoken');
 
-const { newUser, getUser, getAllUsers, getAllOlderes ,getOrdersByUser} = require('../consultas');
-const { verifyToken } = require('./validate_toke');
-
+const {getAllUsers, getAllOlderes ,getOrdersByUser, newOrder} = require('../consultas');
 
 router.get('/home',  async(req, res) => {
     const { data } = req.user;
@@ -22,5 +18,21 @@ router.get('/newPedido', (req, res) => {
     const { data } = req.user;
     res.render('Pedido', { data: data });
 });
+
+router.post('/newPedido', async(req, res) => {
+    const { data } = req.user;
+    const { vegetariano, calorico, celiaco, autoctono, estandar, fecha } = req.body;
+    const id = data.id;
+    try {
+        const pedido = await newOrder(id, vegetariano, calorico, celiaco, autoctono, estandar, fecha);
+        res.status(201).send(pedido);
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal ${e}`,
+            code:500
+        });
+    }
+});
+
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 const pool = new Pool({
-    user: 'eduardo',
-    host: '192.168.0.111',
-    database: 'menu_escolar',
-    password: 'calcetin',
-    port: 5432,
+    user: process.env.USER,
+    host: process.env.HOST,
+    database: process.env.DBNAME,
+    password: process.env.PASSWORD,
+    port: process.env.PORTPG,
 });
 
 const newUser = async (nombre, email, password) => {
@@ -20,7 +20,7 @@ try{
 }
 }
 
-const getUser = async (email, password) => {
+const getUser = async (email, password) => { 
     const usuario = {
         text: 'SELECT * FROM users WHERE email = $1 AND password = $2;',
         values: [email, password],

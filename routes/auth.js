@@ -15,11 +15,10 @@ router.post('/login', async (req, res) => {
             const token = jwt.sign({ data } , process.env.TOKEN_SECRET, { expiresIn: '1h' });
             res.send(token);
        } else {
-            res.status(404).send({ 
-                error: 'Usuario no encontrado',
-                code: 404
+            res.status(401).send({ 
+                error: 'Usuario no encontrado !!!',
+                code: 401
             });
-            res.render('/registro');
         }
     });
 

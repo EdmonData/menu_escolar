@@ -66,11 +66,26 @@ const getOrdersByUser = async (id) => {
     }
 };
 
+const newOrder = async (id, vegetariano, calorico, celiaco, autoctono, estandar, fecha) => {
+    const order = {
+        text: 'INSERT INTO orders (school_id, vegetarian, caloric, celiac, ethnic, standar, date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;',
+        values: [id, vegetariano, calorico, celiaco, autoctono, estandar, fecha],
+    }
+    try {
+        const { rows } = await pool.query(order);
+        return rows[0];
+    } catch (e) {
+        throw new Error(e);
+    }
+
+};
+
 
 module.exports = {
     getUser,
     newUser,
     getAllOlderes,
     getOrdersByUser,
-    getAllUsers
+    getAllUsers,
+    newOrder,
 };

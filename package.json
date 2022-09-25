@@ -1,7 +1,7 @@
 {
   "name": "menu_escolar",
   "version": "1.0.0",
-  "description": "",
+  "description": "users",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,5 +25,14 @@
     "moment": "^2.29.4",
     "nodemon": "^2.0.19",
     "pg": "^8.8.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdmonData/menu_escolar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EdmonData/menu_escolar/issues"
+  },
+  "homepage": "https://github.com/EdmonData/menu_escolar#readme"
 }

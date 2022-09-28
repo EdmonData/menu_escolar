@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const {getAllUsers, getAllOlderes ,getOrdersByUser, newOrder} = require('../consultas');
+const {getAllUsers, getAllOlderes ,getOrdersByUser, newOrder, updateOrder} = require('../consultas');
 
 router.get('/home',  async(req, res) => {
     const { data } = req.user;
@@ -32,6 +32,13 @@ router.post('/newPedido', async(req, res) => {
             code:500
         });
     }
+});
+
+router.get('/rectificar', (req, res) => {
+const { data } = req.user;
+const  { idorder, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar  } = (req.query)
+const allMenus = { idorder, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar };
+res.render('RectPedido', { data: data , allMenus: allMenus });
 });
 
 

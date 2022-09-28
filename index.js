@@ -29,7 +29,7 @@ app.engine(
     exphbs.engine({
         defaultLayout: "main",
         layoutsDir: `${__dirname}/views/layouts`,
-        partialsDir: `${__dirname}/views/components`, 
+        partialsDir: `${__dirname}/views/components`,
     })
     );
 app.set('view engine', 'handlebars');

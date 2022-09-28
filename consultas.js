@@ -1,12 +1,10 @@
 const { Pool } = require('pg');
 const pool = new Pool({
-
     user: process.env.USER,
     host: process.env.HOST,
     database: process.env.DBNAME,
     password: process.env.PASSWORD,
     port: process.env.PORTPG,
-
 });
 
 const newUser = async (nombre, email, password) => {
@@ -79,9 +77,23 @@ const newOrder = async (id, vegetariano, calorico, celiaco, autoctono, estandar,
     } catch (e) {
         throw new Error(e);
     }
-
 };
 
+const updateOrder = async (all) => {
+    const { id, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar } = all;
+    console.log(all);
+    const updateOrder = {
+        text: 'UPDATE orders SET vegetarian = $2, caloric = $3, celiac = $4, ethnic = $5, standar = $6 WHERE id = $1;',
+        values: [id, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar],
+    }
+    try{
+        const { rows } = await pool.query(updateOrder);
+        return rows[0];
+    }
+    catch (e) {
+        throw new Error(e);
+    }
+}
 
 module.exports = {
     getUser,
@@ -90,4 +102,5 @@ module.exports = {
     getOrdersByUser,
     getAllUsers,
     newOrder,
+    updateOrder
 };

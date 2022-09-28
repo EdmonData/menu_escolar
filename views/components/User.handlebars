@@ -33,14 +33,14 @@
           {{#each orders}}
           <tr class="bg-{{#if this.is_rectifield}}success{{else}}warning{{/if}}">
             <th>{{ dateFormat this.date "DD-MM-YYYY" }}</th>
-            <td>{{this.vegetarian}}</td>
-            <td>{{this.celiac}}</td>
-            <td>{{this.standar}}</td>
-            <td>{{this.caloric}}</td>
-            <td>{{this.ethnic}}</td>
+            <td id="menu1_{{this.id}}"id="menu1_{{this.id}}">{{this.vegetarian}}</td>
+            <td id="menu2_{{this.id}}">{{this.celiac}}</td>
+            <td id="menu3_{{this.id}}">{{this.standar}}</td>
+            <td id="menu4_{{this.id}}">{{this.caloric}}</td>
+            <td id="menu5_{{this.id}}">{{this.ethnic}}</td>
             <td class="text-{{#if this.is_rectifield}}success font-weight-bold"><button type="submit"
-                class="btn btn-success btn-outline-dark">Ver Detalles</button></td>{{else}}danger
-            font-weight-bold"><button type="submit" class="btn btn-warning btn-outline-dark">Rectificar</button></td>
+                class="btn btn-success btn-outline-dark" onclick="verDetalle({{ this.id }})" >Ver Detalles</button></td>{{else}}danger
+            font-weight-bold"><button type="submit" class="btn btn-warning btn-outline-dark" onclick="rectificar({{ this.id }})">Rectificar</button></td>
             {{/if}}
 
           </tr>

@@ -1,0 +1,44 @@
+<div class="col-sm-12 col-md-6 m-auto mt-5">
+<form action="/users" method="post" class="form px-5 py-3 m-auto card text-center wrapper">
+ {{>nav}}
+
+ <H1>{{this.name}}</H1>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Menu</span>
+        <span class="input-group-text d-flex justify-content-center col-4">Rectificar</span>
+        <span class="input-group-text d-flex justify-content-center col-4">Pedido</span>
+    </div>
+  <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Vegetariano</span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="vegetariano" id="vegetariano" value="" />
+        <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderVegatariano}}</span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Calorico</span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="calorico" id="calorico" value="" />
+        <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderCalorico}}</span>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Celiaco</span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="celiaco" id="celiaco" value="" />
+            <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderCeliaco}}</span>
+    </div>
+     <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Autoctono</i></span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="autoctono" id="autoctono" value="" />
+         <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderAutoctono}}</span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Estandar</span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="estandar" id="estandar" value="" />
+        <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderEstandar}}</span>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-6">observaciones</span>
+        <textarea class="form-control col-6" placeholder="Obsevaciones" type="text-area"  name="fecha" id="fecha"
+            value="" ></textarea>
+    </div> 
+     <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar" data-mdb-ripple-color="dark" onclick="rectificarOrder({{allMenus.id}})">Rectificar</button>
+</form>
+</div>

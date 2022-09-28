@@ -52,7 +52,7 @@ const verificar = async () => {
 const nuevoPedido = async () => {
     window.location.href = '/users/newPedido/?token=' + tokenGguardado;
 }
-
+ 
 const newOrder = async () => {
     const vegetariano = $('#vegetariano').val()
     const calorico = $('#calorico').val()
@@ -71,5 +71,16 @@ const newOrder = async () => {
         alert(error)
     }
 
+};
+
+const rectificar = async (id) => {
+  const orderVegatariano = $("#menu1_" + id).text();
+  const orderCalorico = $("#menu2_" + id).text();
+  const orderCeliaco = $("#menu3_" + id).text();
+  const orderAutoctono = $("#menu4_" + id).text();
+  const orderEstandar = $("#menu5_" + id).text();
+  
+  window.location.href = "/users/rectificar?token=" + tokenGguardado+"&idorder="+id+"&orderVegatariano="+orderVegatariano+"&orderCalorico="+orderCalorico+"&orderCeliaco="+orderCeliaco+"&orderAutoctono="+orderAutoctono+"&orderEstandar="+orderEstandar;
+    alert("Pedido rectificado");
 };
 

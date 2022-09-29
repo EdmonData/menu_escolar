@@ -4,10 +4,19 @@ const {getAllUsers, getAllOlderes ,getOrdersByUser, newOrder, updateOrder} = req
 
 router.get('/home',  async(req, res) => {
     const { data } = req.user;
+    const { idusers, desde, hasta } = req.query;
+    const orders = {};
     if (data.id === 1 ){
-        const orders = await getAllOlderes();
+        if (idusers !==  undefined) {
+            console.log('entro aca');
+                orders.orders = await getOrdersByUser(idusers, desde, hasta)
+            } else {
+                console.log('entro aca 2');
+                orders.orders = await getAllOlderes()
+            }
         const users = await getAllUsers(data.id);
-        res.render('Admin',{ data: data, orders: orders, users: users });
+        console.log(orders);
+        res.render('Admin',{ data: data, orders: orders.orders, users: users });
     } else {
     const orders = await getOrdersByUser(data.id);
     res.render('Home', { data: data, orders: orders });
@@ -32,13 +41,42 @@ router.post('/newPedido', async(req, res) => {
             code:500
         });
     }
-});
+}); 
 
 router.get('/rectificar', (req, res) => {
 const { data } = req.user;
 const  { idorder, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar  } = (req.query)
 const allMenus = { idorder, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar };
 res.render('RectPedido', { data: data , allMenus: allMenus });
+});
+
+router.put('/rectificar', async(req, res) => {
+    //const { data } = req.user;
+    const payload = req.body;
+    try {
+        const pedido = await updateOrder(payload);
+        res.status(201).send(pedido);
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal ${e}`,
+            code:500
+        });
+    }
+});
+
+router.get('/filtrar', async (req, res) => {
+    const { data } = req.user;
+    const { idusers, desde, hasta } = req.query;
+    try {
+    const orders = await getOrdersByUser(idusers, desde, hasta);
+    console.log(orders);
+    res.render('Admin', { data: data, orders: orders });
+    } catch (e) {
+        res.status(500).send({
+            error: `Algo salio mal ${e}`,
+            code:500
+        });
+    }
 });
 
 

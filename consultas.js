@@ -18,7 +18,7 @@ try{
 } catch (e) {
     throw new Error(e);
 }
-}
+} 
 
 const getUser = async (email, password) => { 
     const usuario = {
@@ -53,10 +53,11 @@ const getAllOlderes   = async () => {
     }
 };
 
-const getOrdersByUser = async (id) => {
+const getOrdersByUser = async (id, desde , hasta) => {
+    console.log(id, desde, hasta);
     const ordersByUser = {
-        text: 'SELECT * FROM orders WHERE school_id = $1;',
-        values: [id],
+        text: 'SELECT * FROM orders WHERE school_id = $1 and date > $2 and date < $3;',
+        values: [id, desde, hasta],
     }
     try {
         const { rows } = await pool.query(ordersByUser);
@@ -80,11 +81,10 @@ const newOrder = async (id, vegetariano, calorico, celiaco, autoctono, estandar,
 };
 
 const updateOrder = async (all) => {
-    const { id, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar } = all;
-    console.log(all);
+    const { idorder, rectifVegetariano, rectifCalorico, rectifCeliaco, rectifAutoctono, rectifEstandar, observaciones } = all;
     const updateOrder = {
-        text: 'UPDATE orders SET vegetarian = $2, caloric = $3, celiac = $4, ethnic = $5, standar = $6 WHERE id = $1;',
-        values: [id, orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar],
+        text: 'UPDATE orders SET vegetarian_real = $2, caloric_real = $3, celiac_real = $4, ethnic_real = $5, standar_real = $6, observations = $7, is_rectifield = 1  WHERE id = $1;',
+        values: [idorder, rectifVegetariano, rectifCalorico, rectifCeliaco, rectifAutoctono, rectifEstandar, observaciones],
     }
     try{
         const { rows } = await pool.query(updateOrder);

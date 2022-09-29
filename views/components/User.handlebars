@@ -4,15 +4,15 @@
           <div class="card-body text-start">
             <h5>M1: Menú Vegetariano</h5>
             <h5>M2: Menú Celiaco</h5>
-            <h5>M2: Menú Estándar</h5>
+            <h5>M3: Menú Estándar</h5>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card">
           <div class="card-body text-start">
-            <h5>M1: Menú Calórico</h5>
-            <h5>M2: Menú Autóctono</h5>
+            <h5>M4: Menú Calórico</h5>
+            <h5>M5: Menú Autóctono</h5>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
           {{#each orders}}
           <tr class="bg-{{#if this.is_rectifield}}success{{else}}warning{{/if}}">
             <th>{{ dateFormat this.date "DD-MM-YYYY" }}</th>
-            <td id="menu1_{{this.id}}"id="menu1_{{this.id}}">{{this.vegetarian}}</td>
+            <td id="menu1_{{this.id}}">{{this.vegetarian}}</td>
             <td id="menu2_{{this.id}}">{{this.celiac}}</td>
             <td id="menu3_{{this.id}}">{{this.standar}}</td>
             <td id="menu4_{{this.id}}">{{this.caloric}}</td>

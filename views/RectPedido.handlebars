@@ -10,35 +10,35 @@
     </div>
   <div class="input-group mb-3">
         <span class="input-group-text d-flex justify-content-center col-4">Vegetariano</span>
-        <input class="form-control col-4" type="number" placeholder="cantidad" name="vegetariano" id="vegetariano" value="" />
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="rectifVegetariano" id="rectifVegetariano" value="" />
         <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderVegatariano}}</span>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text d-flex justify-content-center col-4">Calorico</span>
-        <input class="form-control col-4" type="number" placeholder="cantidad" name="calorico" id="calorico" value="" />
-        <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderCalorico}}</span>
-    </div>
-
-    <div class="input-group mb-3">
         <span class="input-group-text d-flex justify-content-center col-4">Celiaco</span>
-        <input class="form-control col-4" type="number" placeholder="cantidad" name="celiaco" id="celiaco" value="" />
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="rectifCeliaco" id="rectifCeliaco" value="" />
             <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderCeliaco}}</span>
-    </div>
-     <div class="input-group mb-3">
-        <span class="input-group-text d-flex justify-content-center col-4">Autoctono</i></span>
-        <input class="form-control col-4" type="number" placeholder="cantidad" name="autoctono" id="autoctono" value="" />
-         <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderAutoctono}}</span>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text d-flex justify-content-center col-4">Estandar</span>
-        <input class="form-control col-4" type="number" placeholder="cantidad" name="estandar" id="estandar" value="" />
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="rectifEstandar" id="rectifEstandar" value="" />
         <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderEstandar}}</span>
     </div>
     <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Calorico</span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="rectifCalorico" id="rectifCalorico" value="" />
+        <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderCalorico}}</span>
+    </div>
+
+     <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center col-4">Autoctono</i></span>
+        <input class="form-control col-4" type="number" placeholder="cantidad" name="rectifAutoctono" id="rectifAutoctono" value="" />
+         <span class="input-group-text d-flex justify-content-center col-4">{{allMenus.orderAutoctono}}</span>
+    </div>
+    <div class="input-group mb-3">
         <span class="input-group-text d-flex justify-content-center col-6">observaciones</span>
-        <textarea class="form-control col-6" placeholder="Obsevaciones" type="text-area"  name="fecha" id="fecha"
+        <textarea class="form-control col-6" placeholder="Obsevaciones" type="text-area"  name="observaciones" id="observaciones"
             value="" ></textarea>
     </div> 
-     <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar" data-mdb-ripple-color="dark" onclick="rectificarOrder({{allMenus.id}})">Rectificar</button>
+     <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar" data-mdb-ripple-color="dark" onclick="rectificarOrder({{allMenus.idorder}})">Rectificar</button>
 </form>
 </div>

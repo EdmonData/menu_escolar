@@ -34,15 +34,15 @@
         </div>
         <div class="col-sm-12 col-md-3">
           <label for="" class="form-label">Desde</label>
-          <input type="date" class="form-control" id="inputCity">
+          <input type="date" class="form-control" id="desde">
         </div>
         <div class="col-sm-12 col-md-3">
           <label for="" class="form-label">Hasta</label>
-          <input type="date" class="form-control" id="inputZip">
+          <input type="date" class="form-control" id="hasta">
         </div>
          <div class="col-sm-12 col-md-3">
           <label for="" class="form-label text-white">Presionar</label>
-          <button type="submit" class="form-control btn btn-primary">Filtrar</button>
+          <button type="submit" class="form-control btn btn-primary" onclick="filtrar()">Filtrar</button>
         </div>
 
       </div>
@@ -73,7 +73,7 @@
             <td>{{this.ethnic}}</td>
             <td class="text-{{#if this.is_rectifield}}success font-weight-bold"><button type="submit"
                 class="btn btn-success btn-outline-dark">Ver Detalles</button></td>{{else}}danger
-            font-weight-bold"><button type="submit" class="btn btn-warning btn-outline-dark">Rectificar</button></td>
+            font-weight-bold"></td>
             {{/if}}
 
           </tr>

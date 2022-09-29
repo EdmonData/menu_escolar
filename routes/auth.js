@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const { getUser, getAllOlderes, getOrdersByUser, getAllUsers, newUser } = require('../consultas');
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
     res.render('login');
 });
 
@@ -38,5 +38,7 @@ router.post('/login', async (req, res) => {
             });
         } 
     });
+
+   
 
 module.exports = router;

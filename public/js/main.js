@@ -12,13 +12,10 @@ const registrar = async () => {
     const email = $('#email').val()
     const nombre = $('#nombre').val()
     const password = $('#password').val()
-
     const data = { nombre, email, password }
-
     try {
         await axios.post('/registro', data)
         alert('Usuario creado')
-
         window.location.href = '/'
     }
     catch ({ response }) {
@@ -27,7 +24,6 @@ const registrar = async () => {
         alert(error)
     }
 };
- 
 
 const verificar = async () => {
   
@@ -73,16 +69,13 @@ const newOrder = async () => {
 };
 
 const rectificar = async (id) => {
-  const orderVegatariano = $("#menu1_" + id).text();
-  const orderCeliaco = $("#menu2_" + id).text();
-  const orderEstandar = $("#menu3_" + id).text();
-  const orderCalorico = $("#menu4_" + id).text();
-  const orderAutoctono = $("#menu5_" + id).text();
-  //const allMenus = {orderVegatariano, orderCalorico, orderCeliaco, orderAutoctono, orderEstandar};
-   //console.log(allMenus);
-
-  window.location.href = "/users/rectificar?token=" + tokenGguardado+"&idorder="+id+"&orderVegatariano="+orderVegatariano+"&orderCalorico="+orderCalorico+"&orderCeliaco="+orderCeliaco+"&orderAutoctono="+orderAutoctono+"&orderEstandar="+orderEstandar;
-    alert("Pedido rectificado");
+    const orderVegatariano = $("#menu1_" + id).text();
+    const orderCeliaco = $("#menu2_" + id).text();
+    const orderEstandar = $("#menu3_" + id).text();
+    const orderCalorico = $("#menu4_" + id).text();
+    const orderAutoctono = $("#menu5_" + id).text();
+    window.location.href = "/users/rectificar?token=" + tokenGguardado+"&idorder="+id+"&orderVegatariano="+orderVegatariano+"&orderCalorico="+orderCalorico+"&orderCeliaco="+orderCeliaco+"&orderAutoctono="+orderAutoctono+"&orderEstandar="+orderEstandar;
+        alert("Pedido rectificado");
 };
 
 const rectificarOrder = async (id) => {
@@ -111,13 +104,6 @@ const filtrar = async () => {
     const hasta = $('#hasta').val()
     const idusers = $('#users').val()
     console.log(desde, hasta, idusers)
-    //try{
         window.location.href ='/users/home/?token=' + tokenGguardado + '&desde=' + desde + '&hasta=' + hasta + '&idusers=' + idusers
         alert('Filtrado aplicado')
-   /*  }
-    catch ({ response }) {
-        const { data } = response
-        const { error } = data
-        alert(error)
-    } */
 };

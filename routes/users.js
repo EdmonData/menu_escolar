@@ -51,7 +51,6 @@ res.render('RectPedido', { data: data , allMenus: allMenus });
 });
 
 router.put('/rectificar', async(req, res) => {
-    //const { data } = req.user;
     const payload = req.body;
     try {
         const pedido = await updateOrder(payload);
@@ -64,20 +63,7 @@ router.put('/rectificar', async(req, res) => {
     }
 });
 
-router.get('/filtrar', async (req, res) => {
-    const { data } = req.user;
-    const { idusers, desde, hasta } = req.query;
-    try {
-    const orders = await getOrdersByUser(idusers, desde, hasta);
-    console.log(orders);
-    res.render('Admin', { data: data, orders: orders });
-    } catch (e) {
-        res.status(500).send({
-            error: `Algo salio mal ${e}`,
-            code:500
-        });
-    }
-});
+
 
 
 module.exports = router;

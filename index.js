@@ -3,8 +3,6 @@ const app = express();
 const exphbs = require('express-handlebars');
 const expressFileUpload = require('express-fileupload');
 const bodyParse = require('body-parser');
-const jwt = require('jsonwebtoken');
-const secretKey = 'kjsajdljskdkljdaasdasd';
 const handlebars = require('handlebars');
 const router = require('express').Router();
 handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
@@ -45,7 +43,10 @@ app.use('/users',validaterute , userRoutes);
 
 // 404 Page
 app.get("*", (req, res) => {
-    res.render('Auth', { title: 'Oh no! a 404 :(', text: 'No existe la ruta' })
+    const error = {
+        error: 'No existe la ruta'
+    }
+    res.status(404).render('Auth',  { error: error.error });
 })
 
 // server is listening

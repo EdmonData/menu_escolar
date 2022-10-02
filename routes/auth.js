@@ -44,4 +44,8 @@ router.post("/registro", async (req, res) => {
   }
 });
 
+router.get("/detalle", (req, res) => {
+  res.render("DetallePedido");
+});
+
 module.exports = router;

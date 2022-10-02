@@ -7,6 +7,7 @@ const {
   newOrder,
   updateOrder,
   getOrdersByUserAndDate,
+  getOrdersById,
 } = require("../consultas");
 
 router.get("/home", async (req, res) => {
@@ -22,7 +23,6 @@ router.get("/home", async (req, res) => {
     const users = await getAllUsers(data.id);
     res.render("Admin", { data: data, orders: orders.orders, users: users });
   } else {
-    console.log("entro aca 3");
     const orders = await getOrdersByUser(data.id);
     res.render("Home", { data: data, orders: orders });
   }
@@ -91,4 +91,28 @@ router.put("/rectificar", async (req, res) => {
   }
 });
 
+router.get("/detalle", async (req, res) => {
+  const { data } = req.user;
+  const { idorder } = req.query;
+  try{
+    const order = await getOrdersById(idorder);
+    res.send(order);
+  }
+  catch(e){
+    res.status(500).send({
+      error: `Algo salio mal ${e}`,
+      code: 500,
+    });
+  }
+});
+
+router.get("/verDetalle", (req, res) => {
+  const { data } = req.user;
+  const { date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers } = req.query;
+  const order = {date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers};
+  console.log(order);
+  res.render("DetallePedido", { data: data, order: order });
+});
+
 module.exports = router;
+

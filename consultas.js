@@ -53,6 +53,19 @@ const getAllOlderes   = async () => {
     }
 };
 
+const getOrdersById = async (id) => {
+    const ordersById = {
+        text: 'SELECT * FROM orders WHERE id = $1;',
+        values: [id],
+    }
+    try {
+        const { rows } = await pool.query(ordersById);
+        return rows;
+    } catch (e) {
+        throw new Error(e);
+    }
+};
+
 const getOrdersByUserAndDate = async (id, desde , hasta) => {
     console.log(id, desde, hasta);
     const ordersByUser = {
@@ -116,5 +129,6 @@ module.exports = {
     getAllUsers,
     newOrder,
     updateOrder,
-    getOrdersByUserAndDate
+    getOrdersByUserAndDate,
+    getOrdersById,
 };

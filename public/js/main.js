@@ -107,3 +107,27 @@ const filtrar = async () => {
         window.location.href ='/users/home/?token=' + tokenGguardado + '&desde=' + desde + '&hasta=' + hasta + '&idusers=' + idusers
         alert('Filtrado aplicado')
 };
+
+
+const verDetalle = async (id) => {
+    const idorder = id;
+    try {
+        const { data } =  await axios.get('/users/detalle?token=' + tokenGguardado + '&idorder=' + idorder)
+        const pedido = data[0]
+        const { date, school_id, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real } = pedido
+
+        
+        alert('Detalle pedido')
+        window.location.href = '/users/verDetalle?token=' + tokenGguardado + '&idorder=' + idorder + '&date=' + date + '&vegetarian=' + vegetarian + '&caloric=' + caloric + '&celiac=' + celiac + '&ethnic=' + ethnic + '&standar=' + standar + '&observations=' + observations + '&vegetarian_real=' + vegetarian_real + '&caloric_real=' + caloric_real + '&celiac_real=' + celiac_real + '&ethnic_real=' + ethnic_real + '&standar_real=' + standar_real + '&idusers=' + school_id;
+    }
+    catch ({ response }) {
+        const { data } = response
+        const { error } = data
+        alert(error)
+    }
+};
+
+const home = (idusers) => {
+    alert('Home')
+    window.location.href = '/users/home/?token=' + tokenGguardado + '&idusers=' + idusers;
+}

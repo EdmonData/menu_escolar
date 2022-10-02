@@ -1,0 +1,27 @@
+<div class="col-sm-12 col-md-6 m-auto mt-5">
+    <form action="/" method="post" class="form px-5 py-3 m-auto card text-center wrapper">
+        {{>nav}}
+        <h4 class="text-start my-4">Detalle del pedido N° {{ order.idorder }} (Ordenado el {{ dateFormat order.date
+            "DD-MM-YYYY" }})</h4>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-start my-3">Menu Vegetariano Se ordenaron: {{order.vegetarian}}, se consumieron:
+                    {{order.vegetarian_real}}</h5>
+                <h5 class="text-start my-3">Menu Celiaco Se ordenaron: {{order.celiac}}, se consumieron:
+                    {{order.celiac_real}}</h5>
+                <h5 class="text-start my-3">Menu Estandar Se ordenaron: {{order.standar}}, se consumieron:
+                    {{order.standar_real}}<p>
+                    <h5 class="text-start my-3">Menu Calorico Se ordenaron: {{order.caloric}}, se consumieron:
+                        {{order.caloric_real}}</h5>
+                    <h5 class="text-start my-3">Menu Autoctono Se ordenaron: {{order.ethnic}}, se consumieron:
+                        {{order.ethnic_real}}</h5>
+            </div>
+        </div>
+
+<div class="text-end m-3">
+    <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar " data-mdb-ripple-color="dark"
+        onclick="home({{ order.idusers }})">Volver</button>
+</div>
+
+    </form>
+</div>

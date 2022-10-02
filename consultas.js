@@ -53,11 +53,24 @@ const getAllOlderes   = async () => {
     }
 };
 
-const getOrdersByUser = async (id, desde , hasta) => {
+const getOrdersByUserAndDate = async (id, desde , hasta) => {
     console.log(id, desde, hasta);
     const ordersByUser = {
         text: 'SELECT * FROM orders WHERE school_id = $1 and date > $2 and date < $3;',
         values: [id, desde, hasta],
+    }
+    try {
+        const { rows } = await pool.query(ordersByUser);
+        return rows;
+    } catch (e) {
+        throw new Error(e);
+    }
+};
+
+const getOrdersByUser = async (id) => {
+    const ordersByUser = {
+        text: 'SELECT * FROM orders WHERE school_id = $1;',
+        values: [id],
     }
     try {
         const { rows } = await pool.query(ordersByUser);
@@ -102,5 +115,6 @@ module.exports = {
     getOrdersByUser,
     getAllUsers,
     newOrder,
-    updateOrder
+    updateOrder,
+    getOrdersByUserAndDate
 };

@@ -67,7 +67,6 @@ const getOrdersById = async (id) => {
 };
 
 const getOrdersByUserAndDate = async (id, desde , hasta) => {
-    console.log(id, desde, hasta);
     const ordersByUser = {
         text: 'SELECT * FROM orders WHERE school_id = $1 and date > $2 and date < $3;',
         values: [id, desde, hasta],

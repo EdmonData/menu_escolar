@@ -10,6 +10,8 @@ const {
   getOrdersById,
 } = require("../consultas");
 
+const { schemaNewOrder, rectifyOrder } = require("../validaciones");
+
 router.get("/home", async (req, res) => {
   const { data } = req.user;
   const { idusers, desde, hasta } = req.query;
@@ -35,6 +37,10 @@ router.get("/newPedido", (req, res) => {
 
 router.post("/newPedido", async (req, res) => {
   const { data } = req.user;
+  const { error } = schemaNewOrder.validate(req.body);
+  if (error) {
+   return  res.status(400).json({ error: error.details[0].message });
+  }
   const { vegetariano, calorico, celiaco, autoctono, estandar, fecha } =
     req.body;
   const id = data.id;
@@ -80,6 +86,10 @@ router.get("/rectificar", (req, res) => {
 
 router.put("/rectificar", async (req, res) => {
   const payload = req.body;
+  const { error } = rectifyOrder.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }
   try {
     const pedido = await updateOrder(payload);
     res.status(201).send(pedido);
@@ -92,7 +102,6 @@ router.put("/rectificar", async (req, res) => {
 });
 
 router.get("/detalle", async (req, res) => {
-  const { data } = req.user;
   const { idorder } = req.query;
   try{
     const order = await getOrdersById(idorder);
@@ -109,8 +118,10 @@ router.get("/detalle", async (req, res) => {
 router.get("/verDetalle", (req, res) => {
   const { data } = req.user;
   const { date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers } = req.query;
-  const order = {date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers};
-  console.log(order);
+  const totalOrder = parseInt(vegetarian) + parseInt(caloric) + parseInt(celiac) + parseInt(ethnic) + parseInt(standar);
+  const totalOrderReal = parseInt(vegetarian_real) + parseInt(caloric_real) + parseInt(celiac_real) + parseInt(ethnic_real) + parseInt(standar_real);
+  const loss = totalOrder - totalOrderReal;
+  const order = {date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers , loss};
   res.render("DetallePedido", { data: data, order: order });
 });
 

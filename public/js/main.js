@@ -12,6 +12,11 @@ const registrar = async () => {
     const email = $('#email').val()
     const nombre = $('#nombre').val()
     const password = $('#password').val()
+    const passwordConfirm = $('#passwordConfirm').val()
+    if (password !== passwordConfirm) {
+        alert('Las contraseñas no coinciden')
+        return
+    }
     const data = { nombre, email, password }
     try {
         await axios.post('/registro', data)
@@ -79,12 +84,21 @@ const rectificar = async (id) => {
 };
 
 const rectificarOrder = async (id) => {
-    const rectifVegetariano = $("#rectifVegetariano").val();
-    const rectifCalorico = $("#rectifCalorico").val();
-    const rectifCeliaco = $("#rectifCeliaco").val();
-    const rectifAutoctono = $("#rectifAutoctono").val();
-    const rectifEstandar = $("#rectifEstandar").val();
+    const orderVegetariano = parseInt($("#vege").text());
+    const orderCalorico = parseInt($("#calo").text());
+    const orderCeliaco = parseInt($("#celi").text());
+    const orderEstandar = parseInt($("#esta").text());
+    const orderAutoctono = parseInt($("#auto").text());
+    const rectifVegetariano = parseInt($("#rectifVegetariano").val());
+    const rectifCalorico = parseInt($("#rectifCalorico").val());
+    const rectifCeliaco = parseInt($("#rectifCeliaco").val());
+    const rectifAutoctono = parseInt($("#rectifAutoctono").val());
+    const rectifEstandar = parseInt($("#rectifEstandar").val());
     const observaciones = $("#observaciones").val();
+    if (rectifVegetariano > orderVegetariano || rectifCalorico > orderCalorico || rectifCeliaco > orderCeliaco || rectifAutoctono > orderAutoctono || rectifEstandar > orderEstandar) {
+        alert('No puede rectificar más de lo que ha pedido')
+        return
+    }
     const idorder = id;
     const payload = { idorder, rectifVegetariano, rectifCalorico, rectifCeliaco, rectifAutoctono, rectifEstandar, observaciones };
     try {
@@ -103,7 +117,6 @@ const filtrar = async () => {
     const desde = $('#desde').val()
     const hasta = $('#hasta').val()
     const idusers = $('#users').val()
-    console.log(desde, hasta, idusers)
         window.location.href ='/users/home/?token=' + tokenGguardado + '&desde=' + desde + '&hasta=' + hasta + '&idusers=' + idusers
         alert('Filtrado aplicado')
 };
@@ -131,3 +144,10 @@ const home = (idusers) => {
     alert('Home')
     window.location.href = '/users/home/?token=' + tokenGguardado + '&idusers=' + idusers;
 }
+
+const comparar =  (a,b,c,d,e,f,g,h,i,j) => {
+    if (a > f || b > g || c > h || d > i || e > j) {
+        alert('No puede rectificar más de lo que ha pedido')
+        return error;
+    }
+};

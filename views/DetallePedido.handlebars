@@ -15,13 +15,12 @@
                         {{order.caloric_real}}</h5>
                     <h5 class="text-start my-3">Menu Autoctono Se ordenaron: {{order.ethnic}}, se consumieron:
                         {{order.ethnic_real}}</h5>
+                    <h5 class="text-start text-danger mt-5 mb-3">Se perdieron un total de {{order.loss}} menus</h5>
             </div>
         </div>
-
-<div class="text-end m-3">
-    <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar " data-mdb-ripple-color="dark"
-        onclick="home({{ order.idusers }})">Volver</button>
-</div>
-
+        <div class="text-end m-3">
+            <button type="submit" class="btn btn-secondary col-sm-12 col-md-3 m-auto verificar "
+                data-mdb-ripple-color="dark" onclick="home({{ order.idusers }})">Volver</button>
+        </div>
     </form>
 </div>

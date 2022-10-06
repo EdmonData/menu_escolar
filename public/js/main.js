@@ -83,6 +83,11 @@ const rectificar = async (id) => {
         alert("Pedido rectificado");
 };
 
+const jjj = (params) => {
+   let jjjx = (params.a > params. b || params.c > params.d || params.e > params.f || params.g > params.h || params.i > params.j) ? true : false;
+    return jjjx;
+}
+
 const rectificarOrder = async (id) => {
     const orderVegetariano = parseInt($("#vege").text());
     const orderCalorico = parseInt($("#calo").text());
@@ -95,9 +100,13 @@ const rectificarOrder = async (id) => {
     const rectifAutoctono = parseInt($("#rectifAutoctono").val());
     const rectifEstandar = parseInt($("#rectifEstandar").val());
     const observaciones = $("#observaciones").val();
-    if (rectifVegetariano > orderVegetariano || rectifCalorico > orderCalorico || rectifCeliaco > orderCeliaco || rectifAutoctono > orderAutoctono || rectifEstandar > orderEstandar) {
+    const params = { rectifVegetariano , orderVegetariano, rectifCalorico, orderCalorico, rectifCeliaco, orderCeliaco, rectifAutoctono, orderAutoctono, rectifEstandar, orderEstandar};
+    const { rectifVegetariano : a, orderVegetariano : b, rectifCalorico : c, orderCalorico : d, rectifCeliaco : e, orderCeliaco : f, rectifAutoctono : g, orderAutoctono : h, rectifEstandar : i, orderEstandar : j } = params;
+    const params2 = { a, b, c, d, e, f, g, h, i, j };
+    const comparar = jjj(params2);
+    if (comparar) {
         alert('No puede rectificar más de lo que ha pedido')
-        return
+        return ;
     }
     const idorder = id;
     const payload = { idorder, rectifVegetariano, rectifCalorico, rectifCeliaco, rectifAutoctono, rectifEstandar, observaciones };
@@ -145,9 +154,3 @@ const home = (idusers) => {
     window.location.href = '/users/home/?token=' + tokenGguardado + '&idusers=' + idusers;
 }
 
-const comparar =  (a,b,c,d,e,f,g,h,i,j) => {
-    if (a > f || b > g || c > h || d > i || e > j) {
-        alert('No puede rectificar más de lo que ha pedido')
-        return error;
-    }
-};

@@ -32,5 +32,11 @@ const  rectifyOrder = Joi.object({
 });
 
 
+const filtro = Joi.object({
+    desde: Joi.date().required(),
+    hasta: Joi.date().required(),
+    idusers: Joi.number().required()
+});
 
-module.exports = { schemaRegister, schemaLogin, schemaNewOrder, rectifyOrder };
+
+module.exports = { schemaRegister, schemaLogin, schemaNewOrder, rectifyOrder, filtro };

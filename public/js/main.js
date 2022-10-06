@@ -83,9 +83,9 @@ const rectificar = async (id) => {
         alert("Pedido rectificado");
 };
 
-const jjj = (params) => {
-   let jjjx = (params.a > params. b || params.c > params.d || params.e > params.f || params.g > params.h || params.i > params.j) ? true : false;
-    return jjjx;
+const comparacion = (params) => {
+   let result = (params[0] > params[1] || params[2] > params[3] || params[4] > params[5] || params[6] > params[7] || params[8] > params[9]) ? true : false;
+    return result;
 }
 
 const rectificarOrder = async (id) => {
@@ -100,10 +100,8 @@ const rectificarOrder = async (id) => {
     const rectifAutoctono = parseInt($("#rectifAutoctono").val());
     const rectifEstandar = parseInt($("#rectifEstandar").val());
     const observaciones = $("#observaciones").val();
-    const params = { rectifVegetariano , orderVegetariano, rectifCalorico, orderCalorico, rectifCeliaco, orderCeliaco, rectifAutoctono, orderAutoctono, rectifEstandar, orderEstandar};
-    const { rectifVegetariano : a, orderVegetariano : b, rectifCalorico : c, orderCalorico : d, rectifCeliaco : e, orderCeliaco : f, rectifAutoctono : g, orderAutoctono : h, rectifEstandar : i, orderEstandar : j } = params;
-    const params2 = { a, b, c, d, e, f, g, h, i, j };
-    const comparar = jjj(params2);
+    const params = [ rectifVegetariano , orderVegetariano, rectifCalorico, orderCalorico, rectifCeliaco, orderCeliaco, rectifAutoctono, orderAutoctono, rectifEstandar, orderEstandar];
+    const comparar = comparacion(params);
     if (comparar) {
         alert('No puede rectificar más de lo que ha pedido')
         return ;
@@ -126,8 +124,16 @@ const filtrar = async () => {
     const desde = $('#desde').val()
     const hasta = $('#hasta').val()
     const idusers = $('#users').val()
-        window.location.href ='/users/home/?token=' + tokenGguardado + '&desde=' + desde + '&hasta=' + hasta + '&idusers=' + idusers
-        alert('Filtrado aplicado')
+    const payload = { desde, hasta, idusers }
+    try {
+         await axios.post('/users/filtrar?token=' + tokenGguardado, payload)
+        window.location.href ='/users/home/?token=' + tokenGguardado + '&desde=' + desde + '&hasta=' + hasta + '&idusers=' + idusers;
+    }
+    catch ({ response }) {
+        const { data } = response
+        const { error } = data
+        alert(error)
+    }
 };
 
 
@@ -137,8 +143,6 @@ const verDetalle = async (id) => {
         const { data } =  await axios.get('/users/detalle?token=' + tokenGguardado + '&idorder=' + idorder)
         const pedido = data[0]
         const { date, school_id, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real } = pedido
-
-        
         alert('Detalle pedido')
         window.location.href = '/users/verDetalle?token=' + tokenGguardado + '&idorder=' + idorder + '&date=' + date + '&vegetarian=' + vegetarian + '&caloric=' + caloric + '&celiac=' + celiac + '&ethnic=' + ethnic + '&standar=' + standar + '&observations=' + observations + '&vegetarian_real=' + vegetarian_real + '&caloric_real=' + caloric_real + '&celiac_real=' + celiac_real + '&ethnic_real=' + ethnic_real + '&standar_real=' + standar_real + '&idusers=' + school_id;
     }

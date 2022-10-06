@@ -10,7 +10,7 @@ const {
   getOrdersById,
 } = require("../consultas");
 
-const { schemaNewOrder, rectifyOrder } = require("../validaciones");
+const { schemaNewOrder, rectifyOrder, filtro } = require("../validaciones");
 
 router.get("/home", async (req, res) => {
   const { data } = req.user;
@@ -123,7 +123,18 @@ router.get("/verDetalle", (req, res) => {
   const loss = totalOrder - totalOrderReal;
   const order = {date, idorder, vegetarian, caloric, celiac, ethnic, standar, observations, vegetarian_real, caloric_real, celiac_real, ethnic_real, standar_real, idusers , loss};
   res.render("DetallePedido", { data: data, order: order });
+}); 
+
+router.post("/filtrar", async(req, res) => {
+  const { idusers, desde, hasta } = req.body;
+  const { error } = filtro.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }else{
+    res.send({idusers, desde, hasta});
+  }
 });
+
 
 module.exports = router;
 

@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
     return res.status(400).send({
       error: error.details[0].message,
       code: 400,
-    }); 
+    });
   }
   const { emailLogin, passwordLogin } = req.body;
   const user = await getUser(emailLogin, passwordLogin);

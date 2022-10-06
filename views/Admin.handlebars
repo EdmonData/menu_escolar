@@ -72,7 +72,7 @@
             <td>{{this.caloric}}</td>
             <td>{{this.ethnic}}</td>
             <td class="text-{{#if this.is_rectifield}}success font-weight-bold"><button type="submit"
-                class="btn btn-success btn-outline-dark">Ver Detalles</button></td>{{else}}danger
+                class="btn btn-success btn-outline-dark" onclick="verDetalle({{ this.id }})">Ver Detalles</button></td>{{else}}danger
             font-weight-bold"></td>
             {{/if}}
 
